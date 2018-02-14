@@ -65,13 +65,13 @@ def download_files(bucket, keys):
 
 
                     #Try to download the file.  Some will fail because they are directories
+                    url = '{url}/{key}'.format(url=bucket.url, key=key)
+                    print "  Downloading %s" % (url)
                     try:
-                        url = '{url}/{key}'.format(url=bucket.url, key=key)
-                        print "  Downloading %s" % (url)
                         urllib.urlretrieve(url, file_name)
                         print "    FINISHED"
                     except IOError:
-                        print "    FAIL: %s - %s" % (key, e)
+                        print "    FAIL"
                         pass
         else:
             print "  already downloaded {file_name}".format(file_name=file_name)
